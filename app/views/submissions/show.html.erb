@@ -1,0 +1,23 @@
+<p>
+  <b>Name:</b>
+  <%=h @submission.name %>
+</p>
+
+<p>
+  <b>Role:</b>
+  <%=h @submission.role %>
+</p>
+
+<p>
+  <b>Location:</b>
+  <%=h @submission.location %>
+</p>
+
+<p>
+  <b>Comment:</b>
+  <%=h @submission.comment %>
+</p>
+
+
+<%= link_to 'Edit', edit_submission_path(@submission) %> |
+<%= link_to 'Back', submissions_path %>
