@@ -1,4 +1,10 @@
 class SubmissionsController < ApplicationController
+
+  def rss
+    @submissions = Submission.find(:all, :order => 'created_at DESC')
+    render :layout => false, :content_type => "application/rss+xml"
+  end
+
   # GET /submissions
   # GET /submissions.xml
   def index
@@ -82,4 +88,5 @@ class SubmissionsController < ApplicationController
       format.xml  { head :ok }
     end
   end
+    
 end

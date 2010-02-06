@@ -1,0 +1,21 @@
+xml.instruct!
+xml.rss "version" => "2.0", "xmlns:dc" => "http://purl.org/dc/elements/1.1" do
+  xml.channel do
+    xml.title 'Field Voices'
+    xml.link 'http://field-voices-staging.heroku.com/submissions'
+    xml.pubDate CGI.rfc1123_date(Time.now)
+    xml.lastBuildDate CGI.rfc1123_date(@submissions.length > 0 ? @submissions.first.created_at : Date.yesterday.to_time)
+    xml.description "Updates from Plan Canada"
+    xml.ttl 10
+    Rails.logger.info @submissions.length
+    @submissions.each do |submission|
+      xml.item do
+        xml.title h "#{submission.name} in #{submission.location}"
+        xml.link url_for(submission)
+        xml.description h "#{submission.name}, a #{submission.role} in #{submission.location} says: #{submission.comment}"
+        xml.pubDate CGI.rfc1123_date(submission.created_at)
+        xml.guid submission.id
+      end
+    end
+  end
+end

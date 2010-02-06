@@ -1,7 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :submissions
 
-  map.resources :submissions
+  map.resources :submissions, :collection => { :rss => :get }
 
   # The priority is based upon order of creation: first created -> highest priority.
 
